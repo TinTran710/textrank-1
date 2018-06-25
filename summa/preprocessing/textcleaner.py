@@ -35,7 +35,7 @@ UNDO_AB_ACRONYM = re.compile("(\.[a-zA-Z]\.)" + SEPARATOR + "(\w)")
 
 LANGUAGES = {"danish", "dutch", "english", "finnish", "french", "german", \
              "hungarian", "italian", "norwegian", "porter", "portuguese", \
-             "romanian", "russian", "spanish", "swedish"}
+             "romanian", "russian", "spanish", "swedish", "vietnamese"}
 STEMMER = None
 STOPWORDS = None
 
@@ -45,7 +45,7 @@ def set_stemmer_language(language):
     if not language in LANGUAGES:
         raise ValueError("Valid languages are danish, dutch, english, finnish," +
                  " french, german, hungarian, italian, norwegian, porter, portuguese," +
-                 "romanian, russian, spanish, swedish")
+                 "romanian, russian, spanish, swedish", "vietnamese")
     STEMMER = SnowballStemmer(language)
 
 
@@ -53,7 +53,6 @@ def set_stopwords_by_language(language):
     global STOPWORDS
     words = get_stopwords_by_language(language)
     STOPWORDS = frozenset(w for w in words.split() if w)
-
 
 def init_textcleanner(language):
     set_stemmer_language(language)
@@ -172,7 +171,7 @@ def clean_text_by_sentences(text, language="english"):
     return merge_syntactic_units(original_sentences, filtered_sentences)
 
 
-def clean_text_by_word(text, language="english", deacc=False):
+def clean_text_by_word(text, language, deacc=False):
     """ Tokenizes a given text into words, applying filters and lemmatizing them.
     Returns a dict of word -> syntacticUnit. """
     init_textcleanner(language)

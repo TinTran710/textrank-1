@@ -71,7 +71,7 @@ class SnowballStemmer():
 
     languages = ("danish", "dutch", "english", "finnish", "french", "german",
                  "hungarian", "italian", "norwegian", "porter", "portuguese",
-                 "romanian", "russian", "spanish", "swedish")
+                 "romanian", "russian", "spanish", "swedish", "vietnamese")
 
     def __init__(self, language):
         if language not in self.languages:
@@ -1775,6 +1775,9 @@ class GermanStemmer(_StandardStemmer):
         return word
 
 
+class VietnameseStemmer(_StandardStemmer):
+    def stem(self, word):
+        return word
 
 class HungarianStemmer(_LanguageSpecificStemmer):
 
