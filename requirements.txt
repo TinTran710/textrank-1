@@ -1,1 +1,2 @@
 scipy>=0.19
+-e git://github.com/TinTran710/textrank-1#egg=textrank
